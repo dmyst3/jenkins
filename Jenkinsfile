@@ -5,7 +5,9 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                
+
+                //Cleanup checkout dir
+                deleteDir()
                 //Showing php version
                 sh 'php -v'
 
@@ -17,6 +19,9 @@ pipeline {
                     relativeTargetDir: 'checkout-directory']], 
                     submoduleCfg: [], 
                     userRemoteConfigs: [[url: 'https://github.com/banago/simple-php-website.git']]])
+
+                //show user
+                sh 'whoami'
             }
         }
     }
