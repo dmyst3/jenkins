@@ -14,7 +14,7 @@ pipeline {
                 docker { image 'openjdk:8' }
             }
             steps {
-                sh 'java --version'
+                sh 'java --v'
             }
         }
     }
