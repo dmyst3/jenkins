@@ -1,20 +1,11 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'php:7.0-cli' }
+    }
     stages {
-        stage('Test Node') {
-            agent {
-                docker { image 'node:7-alpine' }
-            }
+        stage('Test PHP') {
             steps {
-                sh 'node --version'
-            }
-        }
-        stage('Test Python') {
-            agent {
-                docker { image 'python:3' }
-            }
-            steps {
-                sh 'python -v'
+                sh 'php -v'
             }
         }
     }
