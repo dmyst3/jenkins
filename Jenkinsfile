@@ -9,12 +9,12 @@ pipeline {
                 sh 'node --version'
             }
         }
-        stage('Test Java') {
+        stage('Test Python') {
             agent {
-                docker { image 'openjdk:8' }
+                docker { image 'python:3' }
             }
             steps {
-                sh 'java -V'
+                sh 'python -v'
             }
         }
     }
