@@ -28,7 +28,7 @@ pipeline {
         stage('Unit Test') {
             steps {
                 //show directory contents
-                sh 'ls -la'
+                sh 'uname -a'
             }
 
         }
