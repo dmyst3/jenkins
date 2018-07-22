@@ -24,11 +24,13 @@ pipeline {
                 sh 'whoami'
             }
 
-        stage('Unit test') {
+        }
+        stage('Unit Test') {
             steps {
                 //show directory contents
                 sh 'ls -la'
             }
+
         }
     }
 }
