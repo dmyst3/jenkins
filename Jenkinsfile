@@ -23,6 +23,12 @@ pipeline {
                 //show user
                 sh 'whoami'
             }
+
+        stage('Unit test') {
+            steps {
+                //show directory contents
+                sh 'ls -la'
+            }
         }
     }
 }
