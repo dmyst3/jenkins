@@ -1,5 +1,5 @@
 # use a node base image
-FROM node:7-alpine
+FROM node:7-onbuild
 
 # set maintainer
 LABEL maintainer "abacchus@outlook.com"
