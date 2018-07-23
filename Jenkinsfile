@@ -1,36 +1,36 @@
-pipeline {
-    agent {
-        docker { image 'php:7.0-apache' }
+node {
+    def app
+
+    stage('Clone repository') {
+        /* Let's make sure we have the repository cloned to our workspace */
+
+        checkout scm
     }
-    stages {
-        stage('Checkout Code') {
-            steps {
 
-                //Cleanup checkout dir
-                deleteDir()
-                //Showing php version
-                sh 'php -v'
+    stage('Build image') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
 
-                //checking out code
-                checkout([$class: 'GitSCM', 
-                    branches: [[name: '*/master']], 
-                    doGenerateSubmoduleConfigurations: false, 
-                    extensions: [[$class: 'RelativeTargetDirectory', 
-                    relativeTargetDir: 'checkout-directory']], 
-                    submoduleCfg: [], 
-                    userRemoteConfigs: [[url: 'https://github.com/banago/simple-php-website.git']]])
+        app = docker.build("abacchus/hellonode")
+    }
 
-                //show user
-                sh 'whoami'
-            }
+    stage('Test image') {
+        /* Ideally, we would run a test framework against our image.
+         * For this example, we're using a Volkswagen-type approach ;-) */
 
+        app.inside {
+            sh 'echo "Tests passed"'
         }
-        stage('Unit Test') {
-            steps {
-                //show directory contents
-                sh 'cat /etc/*-release'
-            }
+    }
 
+    stage('Push image') {
+        /* Finally, we'll push the image with two tags:
+         * First, the incremental build number from Jenkins
+         * Second, the 'latest' tag.
+         * Pushing multiple tags is cheap, as all the layers are reused. */
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
         }
     }
 }
