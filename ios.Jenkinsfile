@@ -35,19 +35,19 @@ pipeline{
                 sh 'echo publish app skipped'
             }
         }
-        post{
-            success{
-                sh 'echo build successful'
-            }
-            failure{
-                sh 'build failed'
-            }
-            abort{
-                sh 'build aborted'
-            }
-            always{
-                sh 'will allways run'
-            }
+    }
+    post{
+        success{
+            sh 'echo build successful'
+        }
+        failure{
+            sh 'build failed'
+        }
+        abort{
+            sh 'build aborted'
+        }
+        always{
+            sh 'will allways run'
         }
     }
 
