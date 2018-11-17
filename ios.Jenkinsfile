@@ -13,6 +13,11 @@ pipeline{
                 ])
             }
         }
+        stage('Unit test App'){
+            steps{
+                sh 'echo unit testing skipped due no test specified'
+            }
+        }
         stage('Build App'){
             steps{
                 script{
