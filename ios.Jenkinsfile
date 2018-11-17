@@ -43,11 +43,14 @@ pipeline{
         failure{
             sh 'build failed'
         }
-        abort{
+        aborted{
             sh 'build aborted'
         }
         always{
             sh 'will allways run'
+        }
+        cleanup{
+            sh 'this step will clean up the pipeline'
         }
     }
 
