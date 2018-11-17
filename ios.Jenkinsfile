@@ -38,19 +38,33 @@ pipeline{
     }
     post{
         success{
-            sh 'echo build successful'
+            script{
+                sh 'echo build successful'
+            }
+            
         }
         failure{
-            sh 'build failed'
+            script{
+                sh 'build failed'
+            }
+
         }
         aborted{
-            sh 'build aborted'
+            script{
+                sh 'build aborted'
+            }
+
         }
         always{
-            sh 'will allways run'
+            script{
+                sh 'will allways run'
+            }
+
         }
         cleanup{
-            sh 'this step will clean up the pipeline'
+            script{
+                sh 'this step will clean up the pipeline'
+            }
         }
     }
 
