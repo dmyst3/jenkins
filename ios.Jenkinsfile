@@ -5,6 +5,9 @@ pipeline{
         appName = "test-app"
         workspace = "./test-app/test-app.xcodeproj/project.xcworkspace/"
     }
+    options { 
+        buildDiscarder(logRotator(numToKeepStr: '1')) 
+    }
     stages{
         stage('Checkout App'){
             steps{
