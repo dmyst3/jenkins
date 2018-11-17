@@ -45,25 +45,25 @@ pipeline{
         }
         failure{
             script{
-                sh 'build failed'
+                sh 'echo build failed'
             }
 
         }
         aborted{
             script{
-                sh 'build aborted'
+                sh 'echo build aborted'
             }
 
         }
         always{
             script{
-                sh 'will allways run'
+                sh 'echo will allways run'
             }
 
         }
         cleanup{
             script{
-                sh 'this step will clean up the pipeline'
+                sh 'echo this step will clean up the pipeline'
             }
         }
     }
