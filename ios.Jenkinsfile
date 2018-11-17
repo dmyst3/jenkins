@@ -25,5 +25,10 @@ pipeline{
                 }
             }
         }
+        stage('Publish App'){
+            steps{
+                sh 'echo publish app skipped'
+            }
+        }
     }
 }
