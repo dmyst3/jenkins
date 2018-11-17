@@ -5,9 +5,11 @@ pipeline{
         appName = "test-app"
         workspace = "./test-app/test-app.xcodeproj/project.xcworkspace/"
     }
+
     options { 
         buildDiscarder(logRotator(numToKeepStr: '1')) 
     }
+
     stages{
         stage('Checkout App'){
             steps{
@@ -33,5 +35,20 @@ pipeline{
                 sh 'echo publish app skipped'
             }
         }
+        post{
+            success{
+                sh 'echo build successful'
+            }
+            failure{
+                sh 'build failed'
+            }
+            abort{
+                sh 'build aborted'
+            }
+            always{
+                sh 'will allways run'
+            }
+        }
     }
+
 }
